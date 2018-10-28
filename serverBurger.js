@@ -1,14 +1,31 @@
-var orm = require('./config/orm');
+var express = require("express");
+var bodyParser = require("body-parser");
+var exphbs = require("express-handlebars");
+var path = require("path");
 
-orm.selectWhere('burgersToEat', function(data){
-    for (let i in data){  
-        console.log("buregers to Eat: "+ data[i].EatBurger)
-    }
-});
+var PORT = process.env.PORT || 3000;
 
-orm.selectWhere('burgersEaten', function(data){
-    for (let i in data){
-        
-        console.log("buregers to Eat: "+ data[i].EatenBurger)
-    }
-})
+var app = express();
+app.use(express.static("public"));
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
+app.use(bodyParser.json());
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+// app.use(express.static("./public/assets/css"));
+
+
+
+
+
+
+var routes = require("./controllers/burgersController");
+app.use(routes);
+
+app.listen(PORT, function() {
+    console.log("Eat-Da-Burger now listening at localhost:" + PORT);
+  });
