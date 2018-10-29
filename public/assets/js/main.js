@@ -16,14 +16,19 @@ $(document).ready(function(){
     $("#addBurger").on("submit",function(event){
         event.preventDefault();
 
-        console.log("Add Burger has been submitted")
-    
-    
+        var newBurger = {
+            Burger: $("#addBurger [name='burger']").val().trim()
+          };
+         
+        $.ajax("/burgers",{
+            type: "POST",
+            data: newBurger
+        }).then(function(){
+
+            location.reload();
+
+        })
     })
-    
-
-
-
 })
 
 

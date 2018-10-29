@@ -11,17 +11,10 @@ app.use(express.static("public"));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-// parse application/json
 app.use(bodyParser.json());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-// app.use(express.static("./public/assets/css"));
-
-
-
-
-
 
 var routes = require("./controllers/burgersController");
 app.use(routes);

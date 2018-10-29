@@ -2,25 +2,30 @@ var orm = require('../config/orm');
 
 
 var burger ={
-    allToEat: function(cb) {
-        orm.selectWhere('burgersToEat', function(data){
-          cb(data);
-            for (let i in data){  
-        console.log("burgers to Eat: "+ data[i].EatBurger);
+    all: function(cb) {
+        orm.all(function(res){
+          cb(res);
+            
+                });
+    },
 
-    }
-});
-},
 
-    allEaten: function(cb){
-        orm.selectWhere('burgersEaten', function(data){
-            cb(data);
-        for (let i in data){
-        console.log("burgers that have been Eaten: "+ data[i].EatenBurger)
+    create: function(burger, cb){
+        orm.create(burger, function(res){
+            cb(res);
+        });
+    },
+    
+
+    update: function(id, cb){
+        orm.update([id], objTabVal,  function(res){
+            cb(res);
+        });
     }
-});
-    }
-}
+   
+
+};
 
 
 module.exports = burger;
+

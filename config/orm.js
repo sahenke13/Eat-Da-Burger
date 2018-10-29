@@ -2,17 +2,55 @@
 var connection = require('./connection');
 
 var orm = {
-    selectWhere: function(tableInput, callback){
-        var queryString = "SELECT * FROM ??";
-
-        connection.query(queryString, [tableInput], function(err, result){
+    all: function(callback){
+        var queryString = "SELECT * FROM burgers"
+        console.log("QueryString is:  "+ queryString);
+        connection.query(queryString, function(err, result){
             if (err) throw err;
+            
             callback(result);
-            // console.log(result)
-                });
-                
+                });    
+    },
+    create: function(burger, callback){
+        var queryString = "INSERT INTO burgers (burger) VALUE ('"+burger+"')";
+        console.log("QueryString is:  "+ queryString);
+        connection.query(queryString, burger, function(err, result){
+            if(err)throw err;
+           
+           callback(result);
+            
+        })
+
+
+    },
+    upDate: function(id, callback){
+        var queryString = "UPDATE burgers SET Eaten = true WHERE ID = ?";
+        console.log("QueryString is:  "+ queryString);
+        connection.query(queryString, [id], function(err, result){
+            if (err) throw err;
+
+            callback(result);
+
+
+        })
+
     }
+
 }
+    
+
+
+    // addTo: function(val, callback){
+    //     let queryString = "INSERT INTO burgerseaten (EatenBurger) VALUE (??)"
+        
+    //     connection.query(queryString,[val],function(err,result){
+    //         if(err)throw err;
+    //         callback(result);
+    //     })
+    // }
+
 
 
 module.exports = orm;
+
+// INSERT INTO burgerseaten (EatenBurger) VALUE ('bacon');
