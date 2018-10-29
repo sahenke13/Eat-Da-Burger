@@ -1,11 +1,9 @@
 var orm = require('../config/orm');
 
-
 var burger ={
     all: function(cb) {
         orm.all(function(res){
-          cb(res);
-            
+          cb(res);         
                 });
     },
 
@@ -17,13 +15,11 @@ var burger ={
     },
     
 
-    update: function(id, cb){
-        orm.update([id], objTabVal,  function(res){
+    upDate: function(id, cb){
+        orm.upDate([id], function(res){
             cb(res);
         });
     }
-   
-
 };
 
 

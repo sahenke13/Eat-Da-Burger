@@ -6,35 +6,32 @@ var burger = require("../models/burgers");
 
 router.get("/", function(req, res){
     
-    console.log("\n GET / Route Working");
-
     burger.all(function(data){
         var hbsObject = {
             burger: data
         }
-     
         res.render("index", hbsObject)
     });
 });
 
 router.post("/burgers", function(req, res){
     
-    console.log("\nThis is a test on the api/burgers route\n")
-    console.log("The request is for "+ req.body.Burger)
-
     burger.create( [req.body.Burger], function(result){
-        // res.redirect('/');
         res.send({ id: result.insertId})
     });
 
 });
 
-// router.update("/api/burgers/:id", function(req, res){
+router.put("/burgers/:id", function(req, res){
+    var id = req.params.id;
+    burger.upDate(id, function(result){
+        if(result.changedRows ===0 ){
+            return res.status(404).end();
+        }
+        res.status(200).end()
 
-
-
-
-// })
+    })
+})
 
 
 

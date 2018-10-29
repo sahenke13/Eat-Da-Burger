@@ -17,11 +17,8 @@ var orm = {
         connection.query(queryString, burger, function(err, result){
             if(err)throw err;
            
-           callback(result);
-            
+           callback(result);          
         })
-
-
     },
     upDate: function(id, callback){
         var queryString = "UPDATE burgers SET Eaten = true WHERE ID = ?";
@@ -30,27 +27,9 @@ var orm = {
             if (err) throw err;
 
             callback(result);
-
-
         })
-
     }
-
 }
     
-
-
-    // addTo: function(val, callback){
-    //     let queryString = "INSERT INTO burgerseaten (EatenBurger) VALUE (??)"
-        
-    //     connection.query(queryString,[val],function(err,result){
-    //         if(err)throw err;
-    //         callback(result);
-    //     })
-    // }
-
-
-
 module.exports = orm;
 
-// INSERT INTO burgerseaten (EatenBurger) VALUE ('bacon');
