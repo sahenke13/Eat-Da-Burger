@@ -16,7 +16,6 @@
     {{#each burger}}{{#unless this.Eaten}}
 
     <p>
-        {{this.id}}.
         {{this.Burger}}
         <button data-burgerid="{{this.id}}" class="eatBurger">Eat Da Burger!</button>
     </p>
@@ -32,7 +31,7 @@
     <h2>Burgers Devoured</h2>
         {{#each burger}}{{#if this.Eaten}}
     <p>
-        {{this.id}}. {{this.Burger}}
+       {{this.Burger}}
     </p>
     {{/if}}
     {{/each}}
